@@ -1,7 +1,6 @@
 package com.example.ListTasks.service;
 
 import com.example.ListTasks.model.Task;
-import com.example.ListTasks.model.TaskStatus;
 import com.example.ListTasks.repository.TaskRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class TaskService {
         return repository.findAll();
     }
 
-    public List<Task> findTasksByStatus(TaskStatus taskStatus){
+    public List<Task> findTasksByStatus(String taskStatus){
         return repository.findTasksByStatus(taskStatus);
     }
 

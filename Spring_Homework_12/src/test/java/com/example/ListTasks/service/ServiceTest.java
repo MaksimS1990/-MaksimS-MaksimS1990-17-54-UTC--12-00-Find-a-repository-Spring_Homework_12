@@ -1,7 +1,6 @@
 package com.example.ListTasks.service;
 
 import com.example.ListTasks.model.Task;
-import com.example.ListTasks.model.TaskStatus;
 import com.example.ListTasks.repository.TaskRepository;
 import org.junit.jupiter.api.Assertions;
 
@@ -12,18 +11,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 
-
-import java.time.LocalDateTime;
 import java.util.*;
-;
 
-import static com.example.ListTasks.model.TaskStatus.IN_PROGRESS;
-import static com.example.ListTasks.model.TaskStatus.NOT_STARTED;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -48,13 +39,13 @@ public class ServiceTest {
 
         task1.setId(1L);
         task1.setTitleTask("сделать домашнюю работу");
-        task1.setStatus(IN_PROGRESS);
-        task1.setDateTimeCreateTask(LocalDateTime.now());
+        task1.setStatus("IN_PROGRESS");
+        task1.setDateTimeCreateTask("12/02/24");
 
         task2.setId(2L);
         task2.setTitleTask("лечь спать в 21:00");
-        task2.setStatus(NOT_STARTED);
-        task2.setDateTimeCreateTask(LocalDateTime.now());
+        task2.setStatus("NOT_STARTED");
+        task2.setDateTimeCreateTask("12/02/24");
 
     }
 

@@ -1,23 +1,30 @@
 package com.example.ListTasks.controller;
 
 import com.example.ListTasks.model.Task;
-import com.example.ListTasks.model.TaskStatus;
+import com.example.ListTasks.service.FileGateway;
 import com.example.ListTasks.service.TaskService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Data
 @RestController
 @AllArgsConstructor
+@RequestMapping("/tasks")
 public class TaskController {
 
+    private final FileGateway fileGateway;
+
+    @Autowired
     private final TaskService taskService;
 
     @PostMapping
     public Task addTask(@RequestBody Task task) {
-        return taskService.add(new Task(task));
+        fileGateway.writeToFile(task.getTitleTask() + ".txt", task.toString());
+        return taskService.add(task);
     }
 
     @GetMapping
@@ -26,8 +33,8 @@ public class TaskController {
     }
 
     @GetMapping("/status/{status}")
-    public List<Task> getTasksByStatus(@PathVariable TaskStatus Taskstatus) {
-        return taskService.findTasksByStatus(Taskstatus);
+    public List<Task> getTasksByStatus(@PathVariable String status) {
+        return taskService.findTasksByStatus(status);
     }
 
     @PutMapping("/{id}")
